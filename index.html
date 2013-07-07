@@ -21,10 +21,7 @@
         }
 
         /* Custom container */
-        .container {
-            margin: 0 auto;
-            max-width: 1000px;
-        }
+        
 
             .container > hr {
             }
@@ -121,18 +118,18 @@
             <a class="btn btn-large btn-info" href="#">Calculate</a>
         </div>
 
-        <div class="row-fluid results" data-bind="style: { display: shouldDisplay() ? 'block' : 'none' }">
+        <div class="row-fluid results hero-unit" data-bind="style: { display: shouldDisplay() ? 'block' : 'none' }">
             <div class="span12">
                 <p>Let's assume you'll live to at least 80. That's <span id="yearsleft" data-bind="text: yearsLeftLocale"></span>years left.</p>
                 <p>We'll assume you spend half your working day typing full speed. That's <span id="hourstyping">4</span> hours a day of nothing but typing. There's an average of <span class="wordlength">5</span> letters in an word in English. </p>
                 <p>That means, in your remaining lifetime you can do one of these:</p>
                 <ul>
 
-                    <li><span id="keystrokesleft" data-bind="text: keystrokesLeftLocale"></span>Keystrokes Left</li>
-                    <li><span id="tweetsleft" data-bind="text: tweetsLeftLocale"></span>Tweets Left</li>
-                    <li><span id="novelsleft" data-bind="text: novelsLeftLocale"></span>Novels Left</li>
-                    <li><span id="programsleft" data-bind="text: programsLeftLocale"></span>Computer Programs Left</li>
-                    <li><span id="lovelettersleft" data-bind="text: loveLettersLeftLocale"></span>Love Letters Left</li>
+                    <li><span id="keystrokesleft" data-bind="text: keystrokesLeftLocale"></span> Keystrokes Left</li>
+                    <li><span id="tweetsleft" data-bind="text: tweetsLeftLocale"></span> Tweets Left</li>
+                    <li><span id="novelsleft" data-bind="text: novelsLeftLocale"></span> Novels Left</li>
+                    <li><span id="programsleft" data-bind="text: programsLeftLocale"></span> Computer Programs Left</li>
+                    <li><span id="lovelettersleft" data-bind="text: loveLettersLeftLocale"></span> Love Letters Left</li>
                 </ul>
                 <p>Or</p>
 
