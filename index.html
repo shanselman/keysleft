@@ -118,31 +118,31 @@
             <form>
                 <label class="control-label" for="age">How old are you?</label>
                 <div class="controls">
-                    <input placeholder="Age" type="number" name="age" data-bind="value: age" /></div>
+                    <input placeholder="Age" type="number" name="age" max="79" min="1" data-bind="value: age" /></div>
                 <label class="control-label" for="wpm">How fast do you type?</label>
                 <div class="controls">
-                    <input placeholder="WPM" type="number" name="wpm" data-bind="value: wpm" /></div>
+                    <input placeholder="WPM" type="number" min="1" name="wpm" data-bind="value: wpm" /></div>
             </form>
             <a class="btn btn-large btn-success" href="#">Calculate</a>
         </div>
 
-        <div class="row-fluid results">
+        <div class="row-fluid results" data-bind="style: { display: shouldDisplay() ? 'block' : 'none' }" >
             <div class="span12">
-                <p>Let's assume you'll live to at least 80. That's <span id="yearsleft" data-bind="text: yearsLeft"></span> years left.</p>
+                <p>Let's assume you'll live to at least 80. That's <span id="yearsleft" data-bind="text: yearsLeftLocale"></span> years left.</p>
                 <p>We'll assume you spend half your working day typing full speed. That's <span id="hourstyping">4</span> hours a day of nothing but typing. There's an average of <span class="wordlength">5</span> letters in an word in English. </p>
                 <p>That means, in your remaining lifetime you can do one of these:</p>
                 <ul >
                     
-                    <li><span id="keystrokesleft" data-bind="text: keystrokesLeft"></span> Keystrokes Left</li>
-                    <li><span id="tweetsleft" data-bind="text: tweetsLeft"></span> Tweets Left</li>
-                    <li><span id="novelsleft" data-bind="text: novelsLeft"></span> Novels Left</li>
-                    <li><span id="programsleft" data-bind="text: programsLeft"></span> Computer Programs Left</li>
-                    <li><span id="lovelettersleft" data-bind="text: loveLettersLeft"></span> Love Letters Left</li>
+                    <li><span id="keystrokesleft" data-bind="text: keystrokesLeftLocale"></span> Keystrokes Left</li>
+                    <li><span id="tweetsleft" data-bind="text: tweetsLeftLocale"></span> Tweets Left</li>
+                    <li><span id="novelsleft" data-bind="text: novelsLeftLocale"></span> Novels Left</li>
+                    <li><span id="programsleft" data-bind="text: programsLeftLocale"></span> Computer Programs Left</li>
+                    <li><span id="lovelettersleft" data-bind="text: loveLettersLeftLocale"></span> Love Letters Left</li>
                 </ul>
                 <p>Or</p>
 
                 <ul>
-                    <li><span id="emailsleft" data-bind="text: emailsLeft"></span> Emails to your boss left</li>
+                    <li><span id="emailsleft" data-bind="text: emailsLeftLocale"></span> Emails to your boss left</li>
                 </ul>
                 <p>Where do you want the gift of your keystrokes to go?</p>
             </div>
@@ -167,7 +167,7 @@
         <div class="row-fluid">
             <div class="span12">
                 <h2 class="text-center">Your new email signature</h2>
-                <p class="text-center">This email is short because I have only so many <a href="http://keysleft.com">keysleft.com</a>.</p>
+                <p class="text-center">This email is short because I have only so many <a data-bind="attr: { href: urlWithQ() }">keysleft.com</a>.</p>
             </div>
         </div>
 
@@ -210,6 +210,7 @@
                 this.novelLength = ko.observable(600000);
                 this.programSize = ko.observable(4000000);
 
+                //math variables
                 this.yearsLeft = ko.computed(function () {
                     return this.dead() - this.age();
                 }, this);
@@ -237,12 +238,57 @@
                 this.programsLeft = ko.computed(function () {
                     return Math.floor((this.keystrokesLeft() / this.programSize()));
                 }, this);
+
+                //Formatted string variables
+
+                this.yearsLeftLocale = ko.computed(function () {
+                    return this.yearsLeft().toLocaleString();
+                }, this);
+
+                this.keystrokesLeftLocale = ko.computed(function () {
+                    return this.keystrokesLeft().toLocaleString();
+                }, this);
+
+                this.tweetsLeftLocale = ko.computed(function () {
+                    return this.tweetsLeft().toLocaleString();
+                }, this);
+
+                this.emailsLeftLocale = ko.computed(function () {
+                    return this.emailsLeft().toLocaleString();
+                }, this);
+
+                this.loveLettersLeftLocale = ko.computed(function () {
+                    return this.loveLettersLeft().toLocaleString();
+                }, this);
+                
+                this.novelsLeftLocale = ko.computed(function () {
+                    return this.novelsLeft().toLocaleString();
+                }, this);
+
+                this.programsLeftLocale = ko.computed(function () {
+                    return this.programsLeft().toLocaleString();
+                }, this);
+
+                this.shouldDisplay = ko.computed(function () {
+                    var toShow = true;
+                   
+                
+                    if (isNaN(this.age()) || isNaN(this.wpm())) {
+                        toShow = false;
+                    }
+                   
+                    return toShow;
+                   
+                }, this);
+
+                this.urlWithQ = ko.computed(function () {
+                    var url = [location.protocol, '//', location.host, location.pathname].join('');
+                    url += "?age=" + this.age() + "&wpm=" + this.wpm();
+                    return url;
+                }, this);
             }
 
-            if (isNaN(ageQ))
-                ageQ = 30;
-            if (isNaN(wpmQ))
-                wpmQ = 80;
+        
 
             ko.applyBindings(new KeysLeftViewModel(ageQ, wpmQ));
     </script>
