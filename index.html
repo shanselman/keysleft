@@ -316,7 +316,7 @@
             }, this);
 
             this.tweetText = ko.computed(function () {
-                return "I have only " + this.keystrokesLeftLocale() + " keystrokes left before I die. " + this.urlWithQ();
+                return "I have only " + this.keystrokesLeftLocale() + " keystrokes left before I die. ";
             }, this);
             this.tweetDeath = ko.computed(function () {
                 var url = this.urlWithQ();
