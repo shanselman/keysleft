@@ -20,11 +20,7 @@
             padding-bottom: 60px;
         }
 
-        /* Custom container */
-
-
-        .container > hr {
-        }
+        .container > hr {        }
 
         /* Main marketing message and sign up button */
         .jumbotron {
@@ -206,9 +202,11 @@
         }
 
         var ageQ = getUrlVars()["age"];
-        ageQ = ageQ.replace('#', '');
+        if (ageQ != undefined)
+            ageQ = ageQ.replace('#', '');
         var wpmQ = getUrlVars()["wpm"];
-        wpmQ = wpmQ.replace('#', '');
+        if (wpmQ != undefined)
+            wpmQ = wpmQ.replace('#', '');
 
         var KeysLeftViewModel = function (age, wpm) {
             this.age = ko.observable(age);
@@ -307,8 +305,6 @@
 
 
         }
-
-
 
         ko.applyBindings(new KeysLeftViewModel(ageQ, wpmQ));
     </script>
