@@ -167,7 +167,7 @@
         <div class="row-fluid">
             <div class="span12">
                 <h2 class="text-center">Your new email signature</h2>
-                <p class="text-center">This email is short because I have only so many <a href="http://keysleft.com">keysleft.com</a>.</p>
+                <p class="text-center">This email is short because I have only so many <a data-bind="attr: { href: urlWithQ() }">keysleft.com</a>.</p>
             </div>
         </div>
 
@@ -279,6 +279,12 @@
                    
                     return toShow;
                    
+                }, this);
+
+                this.urlWithQ = ko.computed(function () {
+                    var url = [location.protocol, '//', location.host, location.pathname].join('');
+                    url += "?age=" + this.age() + "&wpm=" + this.wpm();
+                    return url;
                 }, this);
             }
 
