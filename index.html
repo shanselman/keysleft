@@ -158,7 +158,7 @@
             <div class="span6">
                 <h2>Why does this matter?</h2>
                 <p>When you email someone you are giving them not only the gift of your attention but also your limited remaining keystrokes.</p>
-                <p>If you email someone one on one, you're reaching that one person.                    </p>
+                <p>If you email someone one on one, you're reaching that one person.</p>
             </div>
             <div class="span6">
                 <h2>What can you do?</h2>
@@ -299,7 +299,7 @@
             }, this);
             this.tweetDeath = ko.computed(function () {
                 var url = this.urlWithQ();
-                return "http://twitter.com/intent/tweet?url=" + url + "&text=" + this.tweetText();
+                return "http://twitter.com/intent/tweet?url=" + encodeURIComponent(url) + "&text=" + encodeURIComponent(this.tweetText());
             }, this);
 
 
