@@ -121,7 +121,7 @@
                     <div class="control-group">
                         <label class="control-label" for="age">How old are you?</label>
                         <div class="controls">
-                            <input placeholder="Age" autofocus type="number" name="age" max="79" min="1" data-bind="value: age" />
+                            <input placeholder="Age" autofocus type="number" name="age" max="89" min="1" data-bind="value: age" />
                         </div>
                     </div>
                     <div class="control-group">
@@ -138,17 +138,17 @@
 
         <div class="row-fluid results" data-bind="style: { display: shouldDisplay() ? 'block' : 'none' }">
             <div class="span6">
-                <h2 class="text-center">Your keystrokes.</h2>
-                <p class="text-center"><strong>Tweet:</strong> <a data-bind="text: tweetText, attr: { href: tweetDeath() }"></a></p>
+                <h2>Your keystrokes.</h2>
+                <p><strong>Tweet:</strong> <a data-bind="text: tweetText, attr: { href: tweetDeath() }"></a></p>
             </div>
-            <div class="span6">
-                <h2 class="text-center">Your email signature.</h2>
-                <p class="text-center"><strong>COPY PASTE THIS!</strong><br />
+            <div class="span6 text-center">
+                <h2>Your email signature.</h2>
+                <p><strong>COPY PASTE THIS!</strong><br />
                     This email is short because I have only so many <a data-bind="attr: { href: urlWithQ() }">keysleft.com</a>.</p>
             </div>
             <div class="span12">
                 <div class="hero-unit">
-                    <p>Let's assume you'll live to at least <strong>80</strong>. That's <span id="yearsleft" data-bind="text: yearsLeftLocale"></span>&nbsp;years left. We'll assume you spend <strong>half your working day</strong> typing full speed. That's <span id="hourstyping">4</span> hours a day of nothing but typing. There's an average of <span class="wordlength">5</span> letters in an word in English. </p>
+                    <p>Let's assume you'll live to at least <strong>90</strong>. That's <span id="yearsleft" data-bind="text: yearsLeftLocale"></span>&nbsp;years left. We'll assume you spend <strong>half your working day</strong> typing full speed. That's <span id="hourstyping">4</span> hours a day of nothing but typing. There's an average of <span class="wordlength">5</span> letters in an word in English. </p>
                     <p>That means, in your remaining lifetime you have these left in your hands:</p>
                     <ul>
 
@@ -197,7 +197,7 @@
         <hr>
 
         <div class="footer">
-            <p>&copy; <a href="http://hanselman.com/">Scott Hanselman</a> 2013. Code by Scott Hanselman <a href="http://twitter.com/shanselman">@shanselman</a> and Stewart Beck <a href="http://twitter.com/stujiro">@stujiro</a> - I have nothing to sell you, I just want you to get more done.</p>
+            <p>&copy; <a href="http://hanselman.com/">Scott Hanselman</a> 2013. Code by Scott Hanselman <a href="http://twitter.com/shanselman">@shanselman</a>,  Stewart Beck <a href="http://twitter.com/stujiro">@stujiro</a>, and Henrik Andersson <a href="http://twitter.com/ahandersson">@ahandersson</a> - We have nothing to sell you, we just want you to get more done.</p>
         </div>
 
     </div>
@@ -230,7 +230,7 @@
         var KeysLeftViewModel = function (age, wpm) {
             this.age = ko.observable(age);
             this.wpm = ko.observable(wpm);
-            this.dead = ko.observable(80);
+            this.dead = ko.observable(90);
             this.hoursTyping = ko.observable(4);
             this.averageWordLength = ko.observable(5);
             this.weeksInAYear = ko.observable(48);
