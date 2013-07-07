@@ -140,9 +140,14 @@
                 <p>Where do you want the gift of your keystrokes to go?</p>
             </div>
             <div class="span12">
+                <h2 class="text-center">Tweet your remaining keystrokes!</h2>
+                <p class="text-center"><a data-bind="text: tweetText, attr: { href: tweetDeath() }"></a></p>
+            </div>
+            <div class="span12">
                 <h2 class="text-center">Your new email signature</h2>
                 <p class="text-center"><strong>COPY PASTE THIS!</strong> This email is short because I have only so many <a data-bind="attr: { href: urlWithQ() }">keysleft.com</a>.</p>
             </div>
+
         </div>
 
         <hr>
@@ -174,8 +179,8 @@
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="/scripts/jquery-1.9.1.js"></script>
-    <script src="/scripts/bootstrap.js"></script>
+    <script src="scripts/jquery-1.9.1.js"></script>
+    <script src="scripts/bootstrap.js"></script>
     <script src="Scripts/knockout-2.2.1.js"></script>
         <script type="text/javascript">
             function getUrlVars() {
@@ -278,6 +283,16 @@
                     url += "?age=" + this.age() + "&wpm=" + this.wpm();
                     return url;
                 }, this);
+
+                this.tweetText = ko.computed(function () {
+                    return "I have only " + this.keystrokesLeftLocale() + " keystrokes left before I die. http://keysleft.com";
+                }, this);
+                this.tweetDeath = ko.computed(function () {
+                    var url = this.urlWithQ();
+                    return "http://twitter.com/intent/tweet?url=" + url + "&text=" + this.tweetText();
+                }, this);
+
+
             }
 
         
