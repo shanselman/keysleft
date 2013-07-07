@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Keys Left - You have a finite number of keystrokes left in your hands before you die. How many is that?</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="content/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+        body {
+            padding-top: 20px;
+            padding-bottom: 60px;
+        }
+
+        /* Custom container */
+        .container {
+            margin: 0 auto;
+            max-width: 1000px;
+        }
+
+            .container > hr {
+            }
+
+        /* Main marketing message and sign up button */
+        .jumbotron {
+            margin: 10px 0;
+            text-align: center;
+        }
+
+            .jumbotron h1 {
+                font-size: 70px;
+                line-height: 1;
+            }
+
+            .jumbotron .lead {
+                font-size: 24px;
+                line-height: 1.25;
+            }
+
+            .jumbotron .btn {
+                font-size: 21px;
+                padding: 14px 24px;
+            }
+
+        /* Supporting marketing content */
+        .marketing {
+            margin: 60px 0;
+        }
+
+            .marketing p + h4 {
+                margin-top: 28px;
+            }
+
+
+        /* Customize the navbar links to be fill the entire space of the .navbar */
+        .navbar .navbar-inner {
+            padding: 0;
+        }
+
+        .navbar .nav {
+            margin: 0;
+            display: table;
+            width: 100%;
+        }
+
+            .navbar .nav li {
+                display: table-cell;
+                width: 1%;
+                float: none;
+            }
+
+                .navbar .nav li a {
+                    font-weight: bold;
+                    text-align: center;
+                    border-left: 1px solid rgba(255,255,255,.75);
+                    border-right: 1px solid rgba(0,0,0,.1);
+                }
+
+                .navbar .nav li:first-child a {
+                    border-left: 0;
+                    border-radius: 3px 0 0 3px;
+                }
+
+                .navbar .nav li:last-child a {
+                    border-right: 0;
+                    border-radius: 0 3px 3px 0;
+                }
+    </style>
+    <link href="content/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../assets/js/html5shiv.js"></script>
+    <![endif]-->
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="../assets/ico/favicon.png">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Jumbotron -->
+        <div class="jumbotron">
+            <h1>How many keys<br />
+                do you have left?</h1>
+            <p class="lead">"You have a finite number of keystrokes left in your hands before you die."</p>
+            <p class="lead">Exactly how many is that?</p>
+            <form>
+                <label class="control-label" for="age">How old are you?</label>
+                <div class="controls">
+                    <input placeholder="Age" type="number" name="age" /></div>
+                <label class="control-label" for="wpm">How fast do you type?</label>
+                <div class="controls">
+                    <input placeholder="WPM" type="number" name="wpm" /></div>
+            </form>
+            <a class="btn btn-large btn-success" href="#">Calculate</a>
+        </div>
+
+        <div class="row-fluid results">
+            <div class="span12">
+                <p>Let's assume you'll live to at least 80. That's <span id="yearsleft">20</span> years left.</p>
+                <p>We'll assume you spend half your working day typing full speed. That's <span id="hourstyping">4</span> hours a day of nothing but typing. There's an average of <span class="wordlength">5</span> letters in an word in English. </p>
+                <p>That means, in your remaining lifetime you can do one of these:</p>
+                <ul >
+                    
+                    <li><span id="keystrokesleft">x</span> Keystrokes Left</li>
+                    <li><span id="tweetsleft">x</span> Tweets Left</li>
+                    <li><span id="novelsleft">x</span> Novels Left</li>
+                    <li><span id="programsleft">x</span> Computer Programs Left</li>
+                    <li><span id="lovelettersleft">x</span> Love Letters Left</li>
+                </ul>
+                <p>Or</p>
+
+                <ul>
+                    <li><span id="emailsleft">x</span> Emails to your boss left</li>
+                </ul>
+                <p>Where do you want the gift of your keystrokes to go?</p>
+            </div>
+        </div>
+
+        <hr>
+
+        <!-- Example row of columns -->
+        <div class="row-fluid">
+            <div class="span6">
+                <h2>Why does this matter?</h2>
+                <p>When you email someone you are giving them not only the gift of your attention but also your limited remaining keystrokes.</p>
+                <p>If you email someone one on one, you're reaching that one person.                    </p>
+                <p><a class="btn" href="http://www.hanselman.com/blog/DoTheyDeserveTheGiftOfYourKeystrokes.aspx">Do they deserve the gift of your keystrokes? &raquo;</a></p>
+            </div>
+            <div class="span6">
+                <h2>What can you do?</h2>
+                <p>Rather than answering every email, consider blogging the answer and emailing them the link to your post. Perhaps a knowledge base or wiki would be a better place for your work to live. Assuming you want your message to reach as many people as possible, blog it, don't email it.</p>
+                <p><a class="btn" href="http://www.hanselman.com/blog/ItsNotWhatYouReadItsWhatYouIgnoreVideoOfScottHanselmansPersonalProductivityTips.aspx">VIDEO: It's not what you read, it's what you ignore. &raquo;</a></p>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="span12">
+                <h2 class="text-center">Your new email signature</h2>
+                <p class="text-center">This email is short because I have only so many <a href="http://keysleft.com">keysleft.com</a>.</p>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="footer">
+            <p>&copy; <a href="http://hanselman.com/">Scott Hanselman</a> 2013 - I have nothing to sell you, I just want you to get more done.</p>
+        </div>
+
+    </div>
+    <!-- /container -->
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/scripts/jquery-1.9.1.js"></script>
+    <script src="/scripts/bootstrap.js"></script>
+
+
+</body>
+</html>
