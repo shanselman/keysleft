@@ -132,7 +132,7 @@
                 <div class="span12">
                     <div class="hero-unit">
                         <h2>What does it all mean?</h2>
-                        <p>Let's assume you'll live to at least <strong>90</strong>. That's <span id="yearsleft" data-bind="text: yearsLeftLocale"></span>&nbsp;years left. We'll assume you spend <strong>half your working day</strong> typing full speed. That's <span id="hourstyping">4</span> hours a day of nothing but typing. There's an average of <span class="wordlength">5</span> letters in an word in English. </p>
+                        <p>Let's assume you'll live to at least <strong data-bind="text: dead"></strong>. That's <span id="yearsleft" data-bind="text: yearsLeftLocale"></span>&nbsp;years left. We'll assume you spend <strong>half your working day</strong> typing full speed. That's <span id="hourstyping" data-bind="text: hoursTyping"></span> hours a day of nothing but typing. There's an average of <span class="wordlength" data-bind="text: averageWordLength"></span> letters in an word in English. </p>
                         <p>That means, in your remaining lifetime you have these left in your hands:</p>
                         <ul>
 
@@ -205,9 +205,11 @@
         function ImpendingDoom(klViewModel) {
             timerCount++;
             var modValue = Math.ceil(1 / klViewModel.charPerSecond());
-            if (timerCount % modValue == 0) {
-                timerCount = 0;
-                klViewModel.observableKeys(klViewModel.observableKeys() - 1);
+            if (!isNaN(modValue)) {
+                if (timerCount % modValue == 0) {
+                    timerCount = 0;
+                    klViewModel.observableKeys(klViewModel.observableKeys() - 1);
+                }
             }
 
         }
@@ -217,19 +219,12 @@
             var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
             for (var i = 0; i < hashes.length; i++) {
                 hash = hashes[i].split('=');
+                hash[1] =  hash[1].replace('#', '');
                 vars.push(hash[0]);
                 vars[hash[0]] = hash[1];
             }
             return vars;
         }
-
-        var ageQ = getUrlVars()["age"];
-        if (ageQ != undefined)
-            ageQ = ageQ.replace('#', '');
-        var wpmQ = getUrlVars()["wpm"];
-        if (wpmQ != undefined)
-            wpmQ = wpmQ.replace('#', '');
-
 
         function KeysLeftViewModel(age, wpm) {
             var self = this;
@@ -345,9 +340,14 @@
 
 
         }
+
+        var ageQ = getUrlVars()["age"];
+        var wpmQ = getUrlVars()["wpm"];
+
+
         var keysLeftModel = new KeysLeftViewModel(ageQ, wpmQ);
         ko.applyBindings(keysLeftModel);
-        window.setInterval(ImpendingDoom, 1000, keysLeftModel);
+        window.setInterval(ImpendingDoom, 400, keysLeftModel);
     </script>
     <script>
         (function (i, s, o, g, r, a, m) {
