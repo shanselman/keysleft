@@ -1,96 +1,114 @@
-var KeysLeftViewModel = function (age, wpm) {
-    this.age = ko.observable(age);
-    this.wpm = ko.observable(wpm);
-    this.dead = ko.observable(90);
-    this.hoursTyping = ko.observable(4);
-    this.averageWordLength = ko.observable(5);
-    this.weeksInAYear = ko.observable(48);
-    this.novelLength = ko.observable(600000);
-    this.programSize = ko.observable(500000);
+function KeysLeftViewModel(age, wpm) {
+            var self = this;
 
-    //math variables
-    this.yearsLeft = ko.computed(function () {
-        return this.dead() - this.age();
-    }, this);
+            self.age = ko.observable(age);
+            self.wpm = ko.observable(wpm);
+            self.dead = 90;
+            self.hoursTyping = 4;
+            self.averageWordLength = 5;
+            self.weeksInAYear = 48;
+            self.novelLength = 600000;
+            self.programSize = 500000;
+            self.secondsPerYear = 31557600;
+            self.observableKeys = ko.observable();
+            //math variables
 
-    this.keystrokesLeft = ko.computed(function () {
-        return (this.yearsLeft() * this.weeksInAYear() * this.hoursTyping() * 60 * this.wpm() * this.averageWordLength());
-    }, this);
+            self.yearsLeft = ko.computed(function () {
+                return self.dead - self.age();
+            }, self);
 
-    this.tweetsLeft = ko.computed(function () {
-        return Math.floor((this.keystrokesLeft() / 140));
-    }, this);
 
-    this.emailsLeft = ko.computed(function () {
-        return Math.floor(((this.keystrokesLeft() / 1000) * this.averageWordLength()));
-    }, this);
+            self.keystrokesLeft = ko.computed(function () {
+                var keystrokes = (self.yearsLeft() * self.weeksInAYear * self.hoursTyping * 60 * self.wpm() * self.averageWordLength);
+                self.observableKeys(keystrokes);
+                return keystrokes;
+            }, self);
 
-    this.loveLettersLeft = ko.computed(function () {
-        return Math.floor((this.keystrokesLeft() / this.averageWordLength() / 2000));
-    }, this);
+            self.charPerSecond = ko.computed(function () {
+                var secondsLeftToLive = self.secondsPerYear * self.yearsLeft();
+                var toReturn = 0;
+                if (secondsLeftToLive != 0)
+                    toReturn = self.keystrokesLeft() / secondsLeftToLive;
+                return toReturn;
+            }, self);
 
-    this.novelsLeft = ko.computed(function () {
-        return Math.floor((this.keystrokesLeft() / (this.averageWordLength() * this.novelLength())));
-    }, this);
+            self.tweetsLeft = ko.computed(function () {
+                return Math.floor((self.observableKeys() / 140));
+            }, self);
 
-    this.programsLeft = ko.computed(function () {
-        return Math.floor((this.keystrokesLeft() / this.programSize()));
-    }, this);
+            self.emailsLeft = ko.computed(function () {
+                return Math.floor(((self.observableKeys() / 1000) * self.averageWordLength));
+            }, self);
 
-    //Formatted string variables
+            self.loveLettersLeft = ko.computed(function () {
+                return Math.floor((self.observableKeys() / self.averageWordLength / 2000));
+            }, self);
 
-    this.yearsLeftLocale = ko.computed(function () {
-        return this.yearsLeft().toLocaleString();
-    }, this);
+            self.novelsLeft = ko.computed(function () {
+                return Math.floor((self.observableKeys() / (self.averageWordLength * self.novelLength)));
+            }, self);
 
-    this.keystrokesLeftLocale = ko.computed(function () {
-        return this.keystrokesLeft().toLocaleString();
-    }, this);
+            self.programsLeft = ko.computed(function () {
+                return Math.floor((self.observableKeys() / self.programSize));
+            }, self);
 
-    this.tweetsLeftLocale = ko.computed(function () {
-        return this.tweetsLeft().toLocaleString();
-    }, this);
+            //Formatted string variables
 
-    this.emailsLeftLocale = ko.computed(function () {
-        return this.emailsLeft().toLocaleString();
-    }, this);
+            self.yearsLeftLocale = ko.computed(function () {
+                return self.yearsLeft().toLocaleString();
+            }, self);
 
-    this.loveLettersLeftLocale = ko.computed(function () {
-        return this.loveLettersLeft().toLocaleString();
-    }, this);
+            self.keystrokesLeftLocale = ko.computed(function () {
+                return self.observableKeys().toLocaleString();
+            }, self);
 
-    this.novelsLeftLocale = ko.computed(function () {
-        return this.novelsLeft().toLocaleString();
-    }, this);
+            self.tweetsLeftLocale = ko.computed(function () {
+                return self.tweetsLeft().toLocaleString();
+            }, self);
 
-    this.programsLeftLocale = ko.computed(function () {
-        return this.programsLeft().toLocaleString();
-    }, this);
+            self.emailsLeftLocale = ko.computed(function () {
+                return self.emailsLeft().toLocaleString();
+            }, self);
 
-    this.shouldDisplay = ko.computed(function () {
-        var toShow = true;
+            self.loveLettersLeftLocale = ko.computed(function () {
+                return self.loveLettersLeft().toLocaleString();
+            }, self);
 
-        if (isNaN(this.age()) || isNaN(this.wpm())) {
-            toShow = false;
+            self.novelsLeftLocale = ko.computed(function () {
+                return self.novelsLeft().toLocaleString();
+            }, self);
+
+            self.programsLeftLocale = ko.computed(function () {
+                return self.programsLeft().toLocaleString();
+            }, self);
+
+            self.shouldDisplay = ko.computed(function () {
+                var toShow = true;
+
+
+                if (isNaN(self.age()) || isNaN(self.wpm())) {
+                    toShow = false;
+                }
+
+                return toShow;
+
+            }, self);
+
+            self.urlWithQ = ko.computed(function () {
+                var url = [location.protocol, '//', location.host, location.pathname].join('');
+                url += "?age=" + self.age() + "&wpm=" + self.wpm();
+                return url;
+            }, self);
+
+            self.tweetText = ko.computed(function () {
+                return "I have only " + self.keystrokesLeftLocale() + " keystrokes left before I die. ";
+            }, self);
+            self.tweetDeath = ko.computed(function () {
+                var url = self.urlWithQ();
+                return "http://twitter.com/intent/tweet?url=" + encodeURIComponent(url) + "&text=" + encodeURIComponent(self.tweetText());
+            }, self);
+
+
+
+
         }
-
-        return toShow;
-
-        }, this);
-
-        this.urlWithQ = ko.computed(function () {
-            var url = [location.protocol, '//', location.host, location.pathname].join('');
-            url += "?age=" + this.age() + "&wpm=" + this.wpm();
-            return url;
-        }, this);
-
-        this.tweetText = ko.computed(function () {
-            return "I have only " + this.keystrokesLeftLocale() + " keystrokes left before I die. ";
-        }, this);
-
-        this.tweetDeath = ko.computed(function () {
-            var url = this.urlWithQ();
-            return "http://twitter.com/intent/tweet?url=" + encodeURIComponent(url) + "&text=" + encodeURIComponent(this.tweetText());
-        }, this);
-
-    };
