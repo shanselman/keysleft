@@ -1,30 +1,48 @@
-var url = 'http://www.keysleft.com?age=99&wpm=15#';
-var urlWithoutParameters = 'http://www.keysleft.com';
+// wrap all unit testing code in an self executing anonymous function,
+// to avoid adding things to the global object and naming collisions.
 
-test('get age from url', function () {
+(function () {
 
-	var age = keysleft.getFromUrl('age', url);
+	var url;
+	var urlWithoutParameters;
 
-	equal(age, '99');
-});
+	module('url-tests', {
+		setup: function () {
+			url = 'http://www.keysleft.com?age=99&wpm=15#';
+			urlWithoutParameters = 'http://www.keysleft.com';
+		},
+		teardown: function () {
+			url = null;
+			urlWithoutParameters = null;
+		}
+	});
 
-test('get wpm from url', function () {
+	test('get age from url', function () {
 
-	var wpm = keysleft.getFromUrl('wpm', url);
+		var age = keysleft.getFromUrl('age', url);
 
-	equal(wpm, '15');
-});
+		equal(age, '99');
+	});
 
-test('get no age value from url', function () {
+	test('get wpm from url', function () {
 
-	var age = keysleft.getFromUrl('age', urlWithoutParameters);
+		var wpm = keysleft.getFromUrl('wpm', url);
 
-	equal(age, undefined);
-});
+		equal(wpm, '15');
+	});
 
-test('get no wpm value from url', function () {
+	test('get no age value from url', function () {
 
-	var wpm = keysleft.getFromUrl('wpm', urlWithoutParameters);
+		var age = keysleft.getFromUrl('age', urlWithoutParameters);
 
-	equal(wpm, undefined);
-});
+		equal(age, undefined);
+	});
+
+	test('get no wpm value from url', function () {
+
+		var wpm = keysleft.getFromUrl('wpm', urlWithoutParameters);
+
+		equal(wpm, undefined);
+	});
+
+}());
