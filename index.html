@@ -203,25 +203,29 @@
     <script src="Scripts/keysleft.js?version=7162013"></script>
     <script src="Scripts/KeysLeftViewModel.js?version=7162013"></script>
     <script type="text/javascript">
-        var timerCount = 0;
-        function ImpendingDoom(klViewModel) {
-            timerCount++;
-            var modValue = Math.ceil(1 / klViewModel.charPerSecond());
-            if (!isNaN(modValue)) {
-                if (timerCount % modValue == 0) {
-                    timerCount = 0;
-                    klViewModel.observableKeys(klViewModel.observableKeys() - 1);
+
+        jQuery(document).ready(function () {
+
+            var timerCount = 0;
+            function ImpendingDoom(klViewModel) {
+                timerCount++;
+                var modValue = Math.ceil(1 / klViewModel.charPerSecond());
+                if (!isNaN(modValue)) {
+                    if (timerCount % modValue == 0) {
+                        timerCount = 0;
+                        klViewModel.observableKeys(klViewModel.observableKeys() - 1);
+                    }
                 }
+
             }
 
-        }
+            var ageQ = keysleft.getFromUrl("age", window.location.href);
+            var wpmQ = keysleft.getFromUrl("wpm", window.location.href);
 
-        var ageQ = keysleft.getFromUrl("age", window.location.href);
-        var wpmQ = keysleft.getFromUrl("wpm", window.location.href);
-
-        var keysLeftModel = new KeysLeftViewModel(ageQ, wpmQ);
-        ko.applyBindings(keysLeftModel);
-        window.setInterval(ImpendingDoom, 400, keysLeftModel);
+            var keysLeftModel = new KeysLeftViewModel(ageQ, wpmQ);
+            ko.applyBindings(keysLeftModel);
+            window.setInterval(ImpendingDoom, 400, keysLeftModel);
+        });
     </script>
     <script>
         (function (i, s, o, g, r, a, m) {
