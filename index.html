@@ -219,8 +219,39 @@
 
             }
 
+            // http://www.romcartridge.com/2010/01/javascript-function-to-calculate-age.html
+            function calculateAge(dateOfBirth)
+            {
+              todayDate = new Date();
+              todayYear = todayDate.getFullYear();
+              todayMonth = todayDate.getMonth();
+              todayDay = todayDate.getDate();
+              birthYear = dateOfBirth.getFullYear();
+              birthMonth = dateOfBirth.getMonth();
+              birthDay = dateOfBirth.getDate();
+              age = todayYear - birthYear;
+
+              if (todayMonth < birthMonth - 1)
+              {
+                age--;
+              }
+
+              if (birthMonth - 1 == todayMonth && todayDay < birthDay)
+              {
+                age--;
+              }
+              return age;
+            }
+
+
             var ageQ = keysleft.getFromUrl("age", window.location.href);
+            var dobQ = keysleft.getFromUrl("dob", window.location.href);
             var wpmQ = keysleft.getFromUrl("wpm", window.location.href);
+
+            if (ageQ == null && dobQ != null)
+            {
+                ageQ = calculateAge(new Date(dobQ));
+            }
 
             var keysLeftModel = new KeysLeftViewModel(ageQ, wpmQ);
             ko.applyBindings(keysLeftModel);
