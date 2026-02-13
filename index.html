@@ -76,7 +76,7 @@ window.cookieconsent.initialise({
         .theme-toggle-btn { background: none; border: 2px solid var(--kl-card-border); color: var(--kl-text); cursor: pointer; border-radius: 0.5rem; padding: 0.4rem 0.75rem; font-size: 1.25rem; transition: border-color 0.2s, transform 0.2s; }
         .theme-toggle-btn:hover { border-color: var(--kl-primary); transform: scale(1.1); }
         .kl-card { background-color: var(--kl-card-bg); border: 1px solid var(--kl-card-border); border-radius: 1rem; padding: 2rem; transition: background-color 0.3s, border-color 0.3s; }
-        .kl-hero-text { background: linear-gradient(135deg, var(--kl-hero-ga), var(--kl-hero-gb), var(--kl-hero-ga)); background-size: 200% 200%; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; animation: klGradAnim 4s ease infinite; }
+        .kl-hero-text { background: linear-gradient(135deg, var(--kl-hero-ga), var(--kl-hero-gb), var(--kl-hero-ga)); background-size: 200% 200%; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; animation: klGradAnim 4s ease infinite; padding-bottom: 0.15em; }
         @keyframes klGradAnim { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
         .kl-input { width: 100%; padding: 0.75rem 1rem; border: 1px solid var(--kl-input-border); border-radius: 0.5rem; background-color: var(--kl-input-bg); color: var(--kl-text); font-family: var(--kl-font); font-size: 1rem; transition: border-color 0.2s, box-shadow 0.2s; }
         .kl-input:focus { border-color: var(--kl-primary); box-shadow: 0 0 0 3px rgba(255,137,6,0.25); outline: none; }
@@ -132,8 +132,8 @@ window.cookieconsent.initialise({
             <h1 id="hero-heading" class="kl-hero-text text-4xl md:text-6xl font-black mb-6 leading-tight">
                 How many keys do you have left?
             </h1>
-            <p class="text-lg md:text-xl max-w-2xl mx-auto" style="color: var(--kl-text-muted);">
-                <em>&ldquo;You have a finite number of keystrokes left in your hands before you die.&rdquo;</em>
+            <p class="text-lg md:text-xl max-w-3xl mx-auto" style="color: var(--kl-text-muted);">
+                <em>&ldquo;You have a finite number of keystrokes<br class="sm:hidden"> left in your hands before you die.&rdquo;</em>
             </p>
         </section>
 
@@ -195,13 +195,13 @@ window.cookieconsent.initialise({
                 <h2 class="text-xl font-bold mb-3">Why does this matter?</h2>
                 <p class="mb-3" style="color: var(--kl-text-muted);">When you email someone you are giving them not only the gift of your attention but also your limited remaining keystrokes.</p>
                 <p class="mb-5" style="color: var(--kl-text-muted);">If you email someone one on one, you're reaching that one person.</p>
-                <a class="kl-btn" href="http://www.hanselman.com/blog/DoTheyDeserveTheGiftOfYourKeystrokes.aspx">Do they deserve the gift of your keystrokes? &raquo;</a>
+                <a class="kl-btn" href="http://www.hanselman.com/blog/DoTheyDeserveTheGiftOfYourKeystrokes.aspx">Do they deserve the gift of your keystrokes?&nbsp;&raquo;</a>
             </div>
             <div class="kl-card">
                 <h2 class="text-xl font-bold mb-3">What can you do?</h2>
                 <p class="mb-3" style="color: var(--kl-text-muted);">Rather than answering every email, consider blogging the answer and emailing them the link to your post. Perhaps a knowledge base or wiki would be a better place for your work to live.</p>
                 <p class="mb-5" style="color: var(--kl-text-muted);">Assuming you want your message to reach as many people as possible, blog it, don't email it.</p>
-                <a class="kl-btn" href="http://www.hanselman.com/blog/ItsNotWhatYouReadItsWhatYouIgnoreVideoOfScottHanselmansPersonalProductivityTips.aspx">It's not what you read, it's what you ignore &raquo;</a>
+                <a class="kl-btn" href="http://www.hanselman.com/blog/ItsNotWhatYouReadItsWhatYouIgnoreVideoOfScottHanselmansPersonalProductivityTips.aspx">It's not what you read, it's what you ignore&nbsp;&raquo;</a>
             </div>
         </section>
 
