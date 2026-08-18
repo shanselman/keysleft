@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Calculate how many keystrokes you have left in your lifetime. Use them wisely.">
+    <meta name="author" content="Scott Hanselman">
+    <meta name="color-scheme" content="dark light">
+    <title>Keys Left - How many keystrokes do you have left?</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="content/site.css">
+</head>
+<body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <div class="retro-marquee" aria-hidden="true">
+        <span>&#9733; Welcome to Keys Left &#9733; Your #1 source for keystroke countdowns &#9733;</span>
+    </div>
+
+    <header class="site-header">
+        <nav class="container nav" aria-label="Main navigation">
+            <a class="brand" href="/">&#9000; Keys Left</a>
+            <div class="nav-actions">
+                <a class="icon-link" href="https://github.com/shanselman/keysleft" aria-label="View source on GitHub">
+                    <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12 2.2C6.6 2.2 2.2 6.6 2.2 12c0 4.3 2.8 8 6.7 9.3.5.1.7-.2.7-.5v-1.7c-2.7.5-3.3-1.3-3.3-1.3-.4-1.1-1.1-1.4-1.1-1.4-.9-.6.1-.6.1-.6 1 .1 1.5 1.1 1.5 1.1.9 1.5 2.4 1.1 2.9.8.1-.6.4-1.1.6-1.3-2.2-.3-4.4-1.1-4.4-4.8 0-1.1.4-1.9 1-2.6-.1-.3-.4-1.3.1-2.6 0 0 .8-.3 2.7 1a9.4 9.4 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .5 1.3.2 2.3.1 2.6.6.7 1 1.5 1 2.6 0 3.8-2.3 4.5-4.4 4.8.3.3.6.8.6 1.7v2.5c0 .3.2.6.7.5 3.9-1.3 6.7-5 6.7-9.3 0-5.4-4.4-9.8-9.8-9.8z"/>
+                    </svg>
+                </a>
+                <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch theme">
+                    <span id="theme-icon" aria-hidden="true">&#9790;</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main id="main-content" class="container">
+        <section class="hero" aria-labelledby="hero-heading">
+            <h1 id="hero-heading">How many keys do you have left?</h1>
+            <p><em>&ldquo;You have a finite number of keystrokes left in your hands before you die.&rdquo;</em></p>
+        </section>
+
+        <section class="calculator card" aria-labelledby="calculator-heading">
+            <h2 id="calculator-heading">Exactly how many is that?</h2>
+            <form id="calculator-form">
+                <div class="field">
+                    <label for="age">How old are you?</label>
+                    <input id="age" name="age" type="number" inputmode="numeric" min="1" max="89" step="1" autocomplete="off" required autofocus>
+                </div>
+                <div class="field">
+                    <label for="wpm">How fast do you type?</label>
+                    <input id="wpm" name="wpm" type="number" inputmode="numeric" min="1" max="1000" step="1" autocomplete="off" required>
+                </div>
+                <p id="form-error" class="form-error" role="alert" hidden></p>
+                <button class="button" type="submit">Calculate</button>
+            </form>
+        </section>
+
+        <section id="results" class="results" aria-labelledby="results-heading" hidden>
+            <h2 id="results-heading" class="visually-hidden" tabindex="-1">Your results</h2>
+
+            <article class="breakdown">
+                <h2>What does it all mean?</h2>
+                <p>
+                    Let's assume you'll live to at least <strong id="lifespan">90</strong>.
+                    That's <strong class="stat" id="years-left">0</strong> years left.
+                    We'll assume you spend <strong>half your working day</strong> typing at full speed:
+                    <strong class="stat" id="hours-typing">4</strong> hours a day, with
+                    <strong class="stat" id="average-word-length">5</strong> letters in an average English word.
+                </p>
+                <p>That means, in your remaining lifetime, you have approximately:</p>
+                <ul class="stats-list">
+                    <li><strong class="stat" id="keystrokes-left">0</strong> keystrokes</li>
+                    <li><strong class="stat" id="posts-left">0</strong> 280-character posts</li>
+                    <li><strong class="stat" id="novels-left">0</strong> novels</li>
+                    <li><strong class="stat" id="programs-left">0</strong> computer programs</li>
+                    <li><strong class="stat" id="love-letters-left">0</strong> love letters</li>
+                    <li><strong class="stat" id="emails-left">0</strong> long emails to your boss</li>
+                </ul>
+                <h3>Where do you want the gift of your keystrokes to go?</h3>
+            </article>
+
+            <div class="card-grid share-grid">
+                <article class="card">
+                    <h3>Share on social media</h3>
+                    <p class="share-help">Copy and paste your result anywhere you like.</p>
+                    <label class="visually-hidden" for="social-share-text">Your shareable result</label>
+                    <textarea id="social-share-text" class="share-text" rows="4" readonly></textarea>
+                    <button id="copy-share-text" class="button" type="button">Copy result</button>
+                    <p id="copy-status" class="copy-status" role="status" aria-live="polite"></p>
+                </article>
+                <article class="card">
+                    <h3>Your email signature</h3>
+                    <p>This email is short because I have only so many <a id="signature-link" href="/">keysleft.com</a>.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="card-grid learn-grid" aria-label="Learn more">
+            <article class="card">
+                <h2>Why does this matter?</h2>
+                <p>When you email someone, you are giving them not only the gift of your attention, but also your limited remaining keystrokes.</p>
+                <p>If you email someone one-on-one, you are reaching that one person.</p>
+                <a class="button" href="https://www.hanselman.com/blog/do-they-deserve-the-gift-of-your-keystrokes">Do they deserve the gift of your keystrokes? &raquo;</a>
+            </article>
+            <article class="card">
+                <h2>What can you do?</h2>
+                <p>Rather than answering every email, consider blogging the answer and sharing the link. A knowledge base or wiki may be an even better home.</p>
+                <p>If you want your message to reach as many people as possible, blog it; don't email it.</p>
+                <a class="button" href="https://www.hanselman.com/blog/its-not-what-you-read-its-what-you-ignore-video-of-scott-hanselmans-personal-productivity-tips">It's not what you read, it's what you ignore &raquo;</a>
+            </article>
+        </section>
+
+        <div class="retro-visitor" aria-hidden="true">&#128065; Visitors: 008,374 <span>|</span></div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2013-<span id="current-year">2026</span> <a href="https://www.hanselman.com/">Scott Hanselman</a>. Code by Scott Hanselman, Stewart Beck, and Henrik Andersson. We have nothing to sell you; we just want you to get more done.</p>
+            <p>We burned a lot of keystrokes to bring you this message. You're welcome. We're dying.</p>
+        </div>
+    </footer>
+
+    <noscript><p class="noscript">Keys Left needs JavaScript to run the calculator.</p></noscript>
+    <script type="module" src="scripts/app.js"></script>
+</body>
+</html>

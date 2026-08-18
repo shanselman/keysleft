@@ -1,0 +1,13 @@
+{
+  "name": "keysleft",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "check": "node --check public/scripts/keysleft.js && node --check public/scripts/app.js",
+    "test": "npm run check && node --test"
+  }
+}
